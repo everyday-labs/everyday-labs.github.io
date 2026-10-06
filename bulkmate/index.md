@@ -4,8 +4,8 @@ title: Bulkmate
 permalink: /bulkmate/
 ---
 
-**Bulkmate** is a companion app for warehouse-club shoppers, by Everyday Labs.
-It started because I kept losing receipts and missing price-adjustment windows.
+**Bulkmate** is a companion app for warehouse-club shoppers, by Everyday Labs. It exists
+because receipts get lost and price-adjustment windows get missed.
 
 ### What it does
 
