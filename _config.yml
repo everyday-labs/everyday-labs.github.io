@@ -1,0 +1,22 @@
+# GitHub Pages builds this site automatically with Jekyll on every push to main.
+# Docs: https://docs.github.com/pages/setting-up-a-github-pages-site-with-jekyll
+
+title: Everyday Labs
+description: >-
+  Small, useful, open-source apps — built in spare time by Tinker, for everyday problems.
+email: hello@everyday-labs.org
+github_username: everyday-labs
+
+theme: minima
+
+# Pages shown in the top navigation bar, in this order.
+header_pages:
+  - bulkmate/index.md
+  - about.md
+
+plugins:
+  - jekyll-seo-tag
+  - jekyll-sitemap
+
+exclude:
+  - README.md
