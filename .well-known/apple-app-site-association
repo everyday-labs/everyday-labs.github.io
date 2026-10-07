@@ -1,0 +1,13 @@
+{
+  "applinks": {
+    "details": [
+      {
+        "appIDs": ["XX3T25NCVV.com.twonk0609.bulkmate"],
+        "components": [
+          { "/": "/alerts", "comment": "Bulkmate price-drop alerts (links in emails and texts)" },
+          { "/": "/alerts/*" }
+        ]
+      }
+    ]
+  }
+}
