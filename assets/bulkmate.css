@@ -70,7 +70,8 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--red); outline-o
 }
 .labsbar a { text-decoration: none; color: var(--ink-3); font-weight: 600; }
 .labsbar a:hover { color: var(--ink); }
-.labsbar .home { color: var(--ink); font-weight: 800; letter-spacing: .02em; }
+.labsbar .home { color: var(--ink); font-weight: 800; letter-spacing: .02em; display: inline-flex; align-items: center; gap: 7px; }
+.labsbar .home .mark { color: var(--navy); flex: none; }
 .labsbar nav { display: flex; gap: 14px; }
 
 /* Series chips: the five Bulkmate pages */
