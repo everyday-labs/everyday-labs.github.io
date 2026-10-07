@@ -2,3 +2,39 @@
 _site/
 .sass-cache/
 .jekyll-cache/
+.jekyll-metadata
+
+# Ruby / Bundler (local `bundle exec jekyll serve`; GitHub Pages builds without these)
+.bundle/
+vendor/
+Gemfile.lock
+
+# Python (_tools scripts)
+__pycache__/
+*.py[cod]
+.venv/
+
+# Node (if any tooling is added later)
+node_modules/
+
+# Secrets and local environment (never commit these; the site has no server-side secrets)
+.env
+.env.*
+*.pem
+*.key
+*.p8
+*.p12
+*.mobileprovision
+
+# Claude Code local state and worktrees
+.claude/
+
+# Editors and OS
+.DS_Store
+.AppleDouble
+._*
+Thumbs.db
+.vscode/
+.idea/
+*.swp
+*~
