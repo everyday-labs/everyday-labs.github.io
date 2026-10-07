@@ -4,6 +4,8 @@ title: About
 permalink: /about/
 ---
 
+<img src="/assets/logos/logo-stacked.svg" alt="Everyday Labs" width="260" height="100">
+
 **Everyday Labs** is an independent, non-commercial studio that builds small, focused,
 open-source apps.
 
