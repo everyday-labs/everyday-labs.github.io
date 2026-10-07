@@ -6,6 +6,8 @@ description: >-
   Small, useful, open-source apps for everyday problems.
 email: hello@everyday-labs.org
 github_username: everyday-labs
+# Organization logo for search engines (jekyll-seo-tag JSON-LD).
+logo: /assets/logos/mark-512.png
 
 theme: minima
 
