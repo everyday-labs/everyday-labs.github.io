@@ -1,0 +1,133 @@
+---
+layout: null
+title: Bulkmate
+permalink: /bulkmate/
+---
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Bulkmate</title>
+<meta name="description" content="Bulkmate is a free companion app for Costco members by Everyday Labs: receipt tracking, price-drop alerts, a barcode and ingredient scanner, and warehouse check-ins.">
+<link rel="stylesheet" href="/assets/bulkmate.css">
+<style data-page>
+  .disclaimer { display: inline-block; margin-top: 20px; font-size: 12px; color: var(--ink-4); border: 1px solid var(--border); border-radius: 999px; padding: 6px 14px; }
+
+  .pillars { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; margin: 44px 0 14px; }
+  @media (max-width: 560px) { .pillars { grid-template-columns: 1fr; } }
+  .pillar { background: var(--surface); border-radius: 20px; padding: 24px; box-shadow: var(--shadow); border-top: 4px solid var(--p-accent); display: block; text-decoration: none; }
+  .pillar:hover { transform: translateY(-2px); transition: transform .2s; }
+  .pillar .icon-wrap { width: 46px; height: 46px; border-radius: 14px; background: var(--p-tint); display: flex; align-items: center; justify-content: center; font-size: 22px; margin-bottom: 14px; }
+  .pillar h2 { font-size: 17px; margin: 0 0 6px; letter-spacing: -0.01em; }
+  .pillar p { font-size: 14px; line-height: 1.55; color: var(--ink-3); margin: 0; }
+  .pillar .tag { display: block; margin-top: 12px; font-size: 11px; font-weight: 700; letter-spacing: .05em; text-transform: uppercase; color: var(--p-accent); }
+  .p-red { --p-accent: var(--red); --p-tint: var(--red-tint); }
+  .p-navy { --p-accent: var(--navy); --p-tint: var(--navy-tint); }
+  .p-gold { --p-accent: var(--gold-dark); --p-tint: var(--gold-tint); }
+  .p-green { --p-accent: var(--success); --p-tint: var(--success-tint); }
+
+  .basics { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin: 0 0 36px; }
+  @media (max-width: 620px) { .basics { grid-template-columns: 1fr; } }
+  .basic { background: var(--sunken); border-radius: 18px; padding: 18px 20px; }
+  .basic h3 { margin: 0 0 4px; font-size: 14.5px; }
+  .basic p { margin: 0; font-size: 13px; line-height: 1.55; color: var(--ink-3); }
+
+  .flow { background: var(--surface); border-radius: 24px; padding: 32px 28px; box-shadow: var(--shadow); margin: 0 0 48px; }
+  .flow h2 { font-size: 20px; margin: 0 0 22px; text-align: center; }
+  .flow-row { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; justify-content: center; }
+  .flow-step { display: flex; flex-direction: column; align-items: center; gap: 8px; width: 118px; text-align: center; }
+  .flow-step .dot { width: 52px; height: 52px; border-radius: 50%; background: var(--sunken); display: flex; align-items: center; justify-content: center; font-size: 24px; }
+  .flow-step span { font-size: 12.5px; font-weight: 600; color: var(--ink-2); line-height: 1.35; }
+  .flow-arrow { font-size: 20px; color: var(--ink-4); }
+  @media (max-width: 560px) { .flow-arrow { transform: rotate(90deg); } }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .pillar, .flow { animation: rise .55s cubic-bezier(.16,1,.3,1) both; }
+  }
+</style>
+</head>
+<body>
+<!-- page -->
+<div class="labsbar">
+  <a class="home" href="https://everyday-labs.org/">Everyday Labs</a>
+  <nav><a href="https://everyday-labs.org/bulkmate/privacy/">Privacy</a><a href="https://everyday-labs.org/bulkmate/support/">Support</a><a href="https://everyday-labs.org/bulkmate/feedback/">Feedback</a></nav>
+</div>
+
+<div class="series">
+  <span class="current">1. Overview</span>
+  <a href="/bulkmate/receipts/">2. Receipts</a>
+  <a href="/bulkmate/scanner/">3. Scanner</a>
+  <a href="/bulkmate/rewards/">4. Rewards</a>
+  <a href="/bulkmate/spending/">5. Spending</a>
+</div>
+
+<div class="wrap">
+  <div class="hero">
+    <div class="badge-icon">🏬</div>
+    <h1 class="display">Bulkmate</h1>
+    <p class="lede">
+      A free companion app for Costco members, by Everyday Labs. It keeps track of what you buy,
+      watches for price drops so you can claim the refund, and turns warehouse trips into a small
+      collecting game along the way.
+    </p>
+    <span class="disclaimer">Independent and open source · not affiliated with or endorsed by Costco Wholesale</span>
+  </div>
+
+  <div class="pillars">
+    <a class="pillar p-red" href="/bulkmate/receipts/">
+      <div class="icon-wrap">🧾</div>
+      <h2>Receipts &amp; Price Alerts</h2>
+      <p>Scan a receipt and every item is logged. If a price drops within 30 days, you get a push notification and an email, because Costco refunds the difference.</p>
+      <span class="tag">Part 2 →</span>
+    </a>
+    <a class="pillar p-navy" href="/bulkmate/scanner/">
+      <div class="icon-wrap">📦</div>
+      <h2>Barcode Scanner</h2>
+      <p>Scan any product in the warehouse to see its price, what other shoppers paid, and a plain-language ingredient check.</p>
+      <span class="tag">Part 3 →</span>
+    </a>
+    <a class="pillar p-gold" href="/bulkmate/rewards/">
+      <div class="icon-wrap">⭐</div>
+      <h2>Check-Ins &amp; Rewards</h2>
+      <p>Check in at a warehouse, or scan that trip's receipt, to earn stars, climb five fan tiers, and unlock collectible badges.</p>
+      <span class="tag">Part 4 →</span>
+    </a>
+    <a class="pillar p-green" href="/bulkmate/spending/">
+      <div class="icon-wrap">📊</div>
+      <h2>Spend Analytics</h2>
+      <p>A dashboard of where your Costco money goes: monthly trends, top items, and how much you've saved.</p>
+      <span class="tag">Part 5 →</span>
+    </a>
+  </div>
+
+  <div class="basics">
+    <div class="basic"><h3>🔐 Sign in your way</h3><p>Sign in with Apple, Google, or email. Forgot a password? Reset it with a code sent to your inbox.</p></div>
+    <div class="basic"><h3>✉️ Alerts by email</h3><p>Price-drop emails arrive as soon as a drop is found. Turn them off in the app or with one click from any email.</p></div>
+    <div class="basic"><h3>🗑 Your data stays yours</h3><p>Delete any receipt, or your whole account, from inside the app. Nothing is sold or shared with advertisers.</p></div>
+  </div>
+
+  <div class="flow">
+    <h2 class="display">How one trip flows through the app</h2>
+    <div class="flow-row">
+      <div class="flow-step"><div class="dot">🧾</div><span>Scan your receipt after checkout</span></div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-step"><div class="dot">👀</div><span>Prices are watched for 30 days</span></div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-step"><div class="dot">🔔</div><span>Push and email if something drops</span></div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-step"><div class="dot">⭐</div><span>The same trip earns a star</span></div>
+    </div>
+  </div>
+</div>
+
+<footer class="pagefoot">
+  Part 1 of 5 · Bulkmate by <a href="https://everyday-labs.org/">Everyday Labs</a> ·
+  <a href="https://everyday-labs.org/bulkmate/privacy/">Privacy</a> ·
+  <a href="https://everyday-labs.org/bulkmate/support/">Support</a> ·
+  <a href="https://everyday-labs.org/bulkmate/feedback/">Send feedback</a><br>
+  An independent app, not affiliated with or endorsed by Costco Wholesale.
+</footer>
+<!-- /page -->
+</body>
+</html>

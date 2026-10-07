@@ -13,12 +13,12 @@ openly so anyone can use it, read the code, or improve it.
 
 ### [Bulkmate](/bulkmate/)
 
-A companion app for warehouse-club shoppers. Snap a receipt and Bulkmate tracks what was
-bought, warns when a price drops within the price-adjustment window, looks up ingredients from
-a barcode scan, and turns warehouse visits into a little collection game.
+A companion app for Costco members. Snap a receipt and Bulkmate tracks what was bought,
+sends a push and an email when a price drops within the 30-day price-adjustment window, looks up
+ingredients from a barcode scan, and turns warehouse visits into a little collection game.
 *iOS · in beta · open source*
 
-[Learn more](/bulkmate/) · [Source code](https://github.com/everyday-labs) · [Privacy](/bulkmate/privacy/) · [Support](/bulkmate/support/)
+[See how it works](/bulkmate/) · [Privacy](/bulkmate/privacy/) · [Support](/bulkmate/support/) · [Send feedback](/bulkmate/feedback/)
 
 ## Principles
 

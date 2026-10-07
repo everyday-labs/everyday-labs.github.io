@@ -11,7 +11,7 @@ theme: minima
 
 # Pages shown in the top navigation bar, in this order.
 header_pages:
-  - bulkmate/index.md
+  - bulkmate/index.html
   - about.md
 
 plugins:

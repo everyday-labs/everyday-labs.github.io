@@ -1,0 +1,168 @@
+---
+layout: null
+title: Bulkmate Receipts & Price Alerts
+permalink: /bulkmate/receipts/
+---
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Bulkmate Receipts &amp; Price Alerts</title>
+<meta name="description" content="How Bulkmate logs every Costco receipt and alerts you by push and email when a price drops within the 30-day price-adjustment window.">
+<link rel="stylesheet" href="/assets/bulkmate.css">
+<style data-page>
+  .steps { margin: 44px 0; display: flex; flex-direction: column; gap: 14px; }
+  .step { display: grid; grid-template-columns: 56px 1fr; gap: 18px; background: var(--surface); border-radius: 20px; padding: 22px 24px; box-shadow: var(--shadow); align-items: flex-start; }
+  .step .num { width: 56px; height: 56px; border-radius: 16px; background: var(--red); color: var(--on-accent); display: flex; align-items: center; justify-content: center; font-size: 22px; font-weight: 800; }
+  .step h3 { margin: 4px 0 6px; font-size: 17px; }
+  .step p { margin: 0; font-size: 14.5px; line-height: 1.6; color: var(--ink-3); }
+
+  .window-card { background: var(--navy-tint); border-radius: 24px; padding: 30px 28px; margin: 36px 0; }
+  .window-card h2 { font-size: 19px; margin: 0 0 10px; color: var(--navy); }
+  .window-card p { font-size: 14.5px; line-height: 1.65; color: var(--ink-2); margin: 0 0 18px; }
+  .window-bar { position: relative; height: 34px; background: var(--surface); border-radius: 999px; overflow: hidden; margin-bottom: 10px; }
+  .window-fill { position: absolute; inset: 0; background: repeating-linear-gradient(90deg, var(--gold), var(--gold) 2px, transparent 2px, transparent 10px); opacity: .35; }
+  .window-marker { position: absolute; top: 50%; transform: translate(-50%,-50%); width: 26px; height: 26px; border-radius: 50%; background: var(--red); color: var(--on-accent); font-size: 12px; display: flex; align-items: center; justify-content: center; box-shadow: 0 0 0 4px var(--navy-tint); }
+  .window-labels { display: flex; justify-content: space-between; gap: 12px; font-size: 11.5px; color: var(--ink-4); font-weight: 600; }
+
+  .examples { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin: 36px 0 14px; }
+  @media (max-width: 620px) { .examples { grid-template-columns: 1fr; } }
+  .example { background: var(--surface); border-radius: 20px; padding: 22px; box-shadow: var(--shadow); min-width: 0; }
+  .example .tag { font-size: 10.5px; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-4); margin-bottom: 10px; display: block; }
+  .example .msg { background: var(--sunken); border-radius: 14px; padding: 16px 18px; font-size: 14px; line-height: 1.55; color: var(--ink-2); border-left: 3px solid var(--gold); }
+  .example .msg b { color: var(--ink); }
+  .email .from { font-size: 11.5px; color: var(--ink-4); margin-bottom: 8px; }
+  .email .big { font-size: 22px; font-weight: 800; color: var(--navy); margin: 4px 0 6px; letter-spacing: -0.01em; }
+  .email .btn { display: inline-block; margin-top: 10px; background: var(--red); color: var(--on-accent); font-size: 12.5px; font-weight: 700; padding: 7px 14px; border-radius: 9px; }
+
+  .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin: 0 0 44px; }
+  @media (max-width: 560px) { .grid2 { grid-template-columns: 1fr; } }
+  .fact { background: var(--surface); border-radius: 18px; padding: 20px; box-shadow: var(--shadow); }
+  .fact .icon { font-size: 22px; margin-bottom: 10px; }
+  .fact h4 { margin: 0 0 6px; font-size: 15px; }
+  .fact p { margin: 0; font-size: 13.5px; line-height: 1.55; color: var(--ink-3); }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .step, .window-card, .example, .fact { animation: rise .5s cubic-bezier(.16,1,.3,1) both; }
+  }
+</style>
+</head>
+<body>
+<!-- page -->
+<div class="labsbar">
+  <a class="home" href="https://everyday-labs.org/">Everyday Labs</a>
+  <nav><a href="https://everyday-labs.org/bulkmate/privacy/">Privacy</a><a href="https://everyday-labs.org/bulkmate/support/">Support</a><a href="https://everyday-labs.org/bulkmate/feedback/">Feedback</a></nav>
+</div>
+
+<div class="series">
+  <a href="/bulkmate/">1. Overview</a>
+  <span class="current">2. Receipts</span>
+  <a href="/bulkmate/scanner/">3. Scanner</a>
+  <a href="/bulkmate/rewards/">4. Rewards</a>
+  <a href="/bulkmate/spending/">5. Spending</a>
+</div>
+
+<div class="wrap">
+  <div class="hero">
+    <div class="badge-icon">🧾</div>
+    <h1 class="display">Never miss a price drop</h1>
+    <p class="lede">
+      Costco refunds the difference if something you bought drops in price within 30 days.
+      Most people never notice in time. Bulkmate notices for you.
+    </p>
+  </div>
+
+  <div class="steps">
+    <div class="step">
+      <div class="num">1</div>
+      <div><h3>Scan your receipt</h3><p>Point the camera at the receipt after checkout. No signal? The scan is saved and uploads once you're back online.</p></div>
+    </div>
+    <div class="step">
+      <div class="num">2</div>
+      <div><h3>Every item gets logged</h3><p>Each line is read: item, price, and any discount already applied, so your purchase history builds itself. Misread an item? Tap it to fix it.</p></div>
+    </div>
+    <div class="step">
+      <div class="num">3</div>
+      <div><h3>Prices are watched for 30 days</h3><p>Every night, current pricing is checked for everything you bought in the last 30 days, from live pricing data and from what other Bulkmate users recently paid in the warehouse.</p></div>
+    </div>
+    <div class="step">
+      <div class="num">4</div>
+      <div><h3>You're told right away, receipt ready</h3><p>A drop sends a push notification, an email, and an alert in the app. Tap it to pull up the original receipt to bring to the membership counter.</p></div>
+    </div>
+  </div>
+
+  <div class="window-card">
+    <h2 class="display">The 30-day window</h2>
+    <p>The whole feature is built around one rule: a purchase stays eligible for a price adjustment for 30 days after you buy it.</p>
+    <div class="window-bar">
+      <div class="window-fill"></div>
+      <div class="window-marker" style="left: 22%;">🧾</div>
+    </div>
+    <div class="window-labels"><span>Day 0 · you bought it</span><span>Day 30 · window closes</span></div>
+  </div>
+
+  <div class="examples">
+    <div class="example">
+      <span class="tag">Push notification</span>
+      <div class="msg">
+        <b>Price Drop — You may be owed $4.50</b><br>
+        Organic Almond Butter dropped from $16.49 to $11.99. You may qualify for a price adjustment.
+      </div>
+    </div>
+    <div class="example email">
+      <span class="tag">Email</span>
+      <div class="msg">
+        <div class="from">Bulkmate &lt;noreply@everyday-labs.org&gt;</div>
+        <b>Price drop: you could get $4.50 back</b>
+        <div class="big">You could get $4.50 back</div>
+        on 1 item you bought, now that the price has dropped.
+        <div><span class="btn">View in Bulkmate</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="grid2">
+    <div class="fact">
+      <div class="icon">🔁</div>
+      <h4>One alert per drop</h4>
+      <p>You hear about each drop once. You're only told again if the price falls further, and an alert you dismissed comes back in that case.</p>
+    </div>
+    <div class="fact">
+      <div class="icon">🔕</div>
+      <h4>Your choice of alerts</h4>
+      <p>Push and email can each be turned off in Profile → Preferences. Every email also has a one-click unsubscribe link.</p>
+    </div>
+    <div class="fact">
+      <div class="icon">✏️</div>
+      <h4>Fix a misread</h4>
+      <p>Receipt scanning isn't perfect. If a price or item name looks wrong, tap the line and correct it.</p>
+    </div>
+    <div class="fact">
+      <div class="icon">💵</div>
+      <h4>Two price sources</h4>
+      <p>The price used is the lower of live pricing data and the median that other Bulkmate users recently paid for the same item.</p>
+    </div>
+    <div class="fact">
+      <div class="icon">🗂</div>
+      <h4>Full history, searchable</h4>
+      <p>Every receipt is saved and searchable by item, date range, warehouse, or amount, so nothing is lost with the paper copy.</p>
+    </div>
+    <div class="fact">
+      <div class="icon">🏬</div>
+      <h4>Matched to your warehouse</h4>
+      <p>Receipts are matched to one of 720+ warehouses worldwide. If a receipt can't be matched, pick the warehouse from a list.</p>
+    </div>
+  </div>
+</div>
+
+<footer class="pagefoot">
+  Part 2 of 5 · Bulkmate by <a href="https://everyday-labs.org/">Everyday Labs</a> ·
+  <a href="https://everyday-labs.org/bulkmate/privacy/">Privacy</a> ·
+  <a href="https://everyday-labs.org/bulkmate/support/">Support</a> ·
+  <a href="https://everyday-labs.org/bulkmate/feedback/">Send feedback</a><br>
+  An independent app, not affiliated with or endorsed by Costco Wholesale.
+</footer>
+<!-- /page -->
+</body>
+</html>
