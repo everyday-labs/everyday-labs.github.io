@@ -18,5 +18,9 @@ plugins:
   - jekyll-seo-tag
   - jekyll-sitemap
 
+# Jekyll skips dot-folders by default; Apple fetches the universal-link file from here.
+include:
+  - .well-known
+
 exclude:
   - README.md
