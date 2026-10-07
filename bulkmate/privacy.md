@@ -7,7 +7,7 @@ permalink: /bulkmate/privacy/
 <!-- Source of truth: costco-mobile/docs/PRIVACY.md in the Bulkmate repo. Edit it there and
      copy it here, so the app repo and the website never disagree. -->
 
-**Last updated: 6 October 2026**
+**Last updated: 7 October 2026**
 
 Bulkmate is an independent app by **Everyday Labs** that helps you track Costco receipts, catch price-match
 windows, and earn rewards for warehouse visits. It is not affiliated with, endorsed by, or
@@ -20,7 +20,7 @@ It is written to be specific rather than reassuring — if something is stored, 
 
 Bulkmate is published by **Everyday Labs**, an independent studio, which is responsible for
 the data described in this policy. For any privacy question or request, contact
-**balajic0623@gmail.com**.
+**hello@everyday-labs.org**.
 
 ## What is collected
 
@@ -89,7 +89,7 @@ To delete your entire account, open **Profile → Delete Account**. This permane
 account, every receipt and its scanned image, all items and price alerts, your check-ins, stars
 and badges. It cannot be undone.
 
-If you would rather it be handled for you, email **balajic0623@gmail.com**.
+If you would rather it be handled for you, email **hello@everyday-labs.org**.
 
 ## Your choices
 
