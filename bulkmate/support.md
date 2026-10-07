@@ -19,7 +19,8 @@ your account and ask for deletion.
 ### Common questions
 
 **The confirmation or password-reset code didn't arrive.**
-Check your spam folder, wait a minute, then tap **Resend code**. Codes expire after one hour.
+Codes come from **noreply@everyday-labs.org**. Check your spam folder, wait a minute, then tap
+**Resend code**. Codes are 8 digits and expire after one hour.
 If you signed in with Apple and chose *Hide My Email*, codes go to your Apple relay address,
 which forwards to your real inbox.
 
@@ -29,6 +30,13 @@ Open the receipt and tap any line item to correct it.
 **Check-in says "too far away".**
 Check-ins need you to be at the warehouse (within about 50 meters) with location access allowed
 for Bulkmate. You can also earn the check-in by scanning that trip's receipt.
+
+**How do I stop price-drop emails?**
+Turn off **Price-Drop Emails** in **Profile → Preferences**, or use the unsubscribe link at the
+bottom of any of them. Push notifications are controlled separately in iOS Settings.
+
+**I have an idea or found a bug.**
+Use the [feedback form](/bulkmate/feedback/), or email the address above.
 
 **How is personal data used?**
 See the [privacy policy](/bulkmate/privacy/) — it lists exactly what's collected and where it goes.

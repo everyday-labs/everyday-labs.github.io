@@ -1,0 +1,161 @@
+---
+layout: null
+title: Bulkmate Barcode Scanner
+permalink: /bulkmate/scanner/
+---
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Bulkmate Barcode Scanner</title>
+<meta name="description" content="Scan any Costco product with Bulkmate to see its price, what other shoppers paid, and an ingredient check built on Open Food Facts data.">
+<link rel="stylesheet" href="/assets/bulkmate.css">
+<style data-page>
+  :root { --accent: var(--navy); --accent-tint: var(--navy-tint); }
+  .hero .badge-icon { --hero-from: #1B2A4A; --hero-to: #12203A; }
+
+  .three { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin: 40px 0; }
+  @media (max-width: 620px) { .three { grid-template-columns: 1fr; } }
+  .card { background: var(--surface); border-radius: 20px; padding: 22px; box-shadow: var(--shadow); }
+  .card .icon { font-size: 24px; margin-bottom: 10px; }
+  .card h3 { margin: 0 0 6px; font-size: 15.5px; }
+  .card p { margin: 0; font-size: 13.5px; line-height: 1.55; color: var(--ink-3); }
+
+  .how { background: var(--sunken); border-radius: 24px; padding: 30px 28px; margin: 48px 0 20px; border: 1px solid var(--border); }
+  .how .eyebrow { font-size: 11px; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; color: var(--red); display: block; margin-bottom: 10px; }
+  .how h2 { font-size: 21px; margin: 0 0 14px; }
+  .how p { font-size: 14.5px; line-height: 1.7; color: var(--ink-2); margin: 0 0 14px; }
+  .how .steps-mini { display: flex; flex-direction: column; gap: 10px; margin: 18px 0; }
+  .how .steps-mini div { display: flex; gap: 12px; align-items: flex-start; font-size: 14px; line-height: 1.5; color: var(--ink-2); }
+  .how .steps-mini span.n { flex-shrink: 0; width: 24px; height: 24px; border-radius: 50%; background: var(--navy); color: var(--bg); font-size: 12px; font-weight: 800; display: flex; align-items: center; justify-content: center; }
+
+  .source-row, .legend-row { display: flex; gap: 10px; margin: 18px 0; flex-wrap: wrap; }
+  .source-chip { display: flex; align-items: center; gap: 8px; padding: 8px 14px; border-radius: 999px; font-size: 12.5px; font-weight: 700; background: var(--surface); border: 1px solid var(--border); }
+  .source-chip .rank { font-size: 9.5px; font-weight: 800; letter-spacing: .04em; text-transform: uppercase; padding: 2px 7px; border-radius: 999px; }
+  .source-chip.primary .rank { background: var(--good-tint); color: var(--good); }
+  .source-chip.fallback .rank { background: var(--sunken); color: var(--ink-3); }
+  .legend-pill { display: flex; align-items: center; gap: 8px; padding: 8px 14px; border-radius: 999px; font-size: 13px; font-weight: 700; }
+  .legend-pill .dot { width: 9px; height: 9px; border-radius: 50%; background: currentColor; }
+  .legend-pill.good { background: var(--good-tint); color: var(--good); }
+  .legend-pill.watch { background: var(--watch-tint); color: var(--watch); }
+  .legend-pill.avoid { background: var(--avoid-tint); color: var(--avoid); }
+
+  .caveat { display: flex; gap: 12px; background: var(--red-tint); border-radius: 14px; padding: 16px 18px; margin-top: 18px; }
+  .caveat .mark { font-size: 18px; flex-shrink: 0; }
+  .caveat p { margin: 0; font-size: 13.5px; line-height: 1.6; color: var(--ink-2); }
+  .caveat p b { color: var(--red); }
+
+  .example { background: var(--surface); border-radius: 20px; padding: 26px; box-shadow: var(--shadow); margin: 32px 0 48px; }
+  .example .tag { font-size: 10.5px; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-4); display: block; }
+  .example h3 { margin: 4px 0 4px; font-size: 16.5px; }
+  .example .sub { font-size: 12.5px; color: var(--ink-4); margin-bottom: 16px; }
+  .score-row { display: flex; align-items: center; gap: 10px; margin-bottom: 16px; flex-wrap: wrap; }
+  .nova-badge { display: flex; align-items: center; gap: 8px; background: var(--watch-tint); border-radius: 10px; padding: 7px 12px; }
+  .nova-badge .num { font-size: 12px; font-weight: 800; color: var(--watch); }
+  .nova-badge .lbl { font-size: 11px; color: var(--ink-3); font-weight: 600; }
+  .nutri-badge { width: 34px; height: 34px; border-radius: 50%; background: var(--nutriB); color: var(--nutriB-ink); display: flex; align-items: center; justify-content: center; font-size: 16px; font-weight: 800; }
+  .tally { display: flex; gap: 16px; font-size: 13px; font-weight: 700; margin-bottom: 16px; flex-wrap: wrap; }
+  .tally span { display: flex; align-items: center; gap: 6px; }
+  .tally .dot { width: 8px; height: 8px; border-radius: 50%; }
+  .ing-text { font-size: 14px; line-height: 2; color: var(--ink-2); margin: 0 0 16px; }
+  .ing-text mark { font-weight: 700; padding: 2px 6px; border-radius: 6px; background: var(--watch-tint); color: var(--watch); }
+  .flag-row { display: flex; gap: 10px; background: var(--sunken); border-radius: 12px; padding: 10px 12px; margin-bottom: 8px; }
+  .flag-chip { font-size: 9.5px; font-weight: 800; letter-spacing: .04em; text-transform: uppercase; padding: 3px 8px; border-radius: 999px; background: var(--watch-tint); color: var(--watch); height: fit-content; white-space: nowrap; }
+  .flag-copy { min-width: 0; }
+  .flag-copy .fn { font-size: 12.5px; font-weight: 700; margin-bottom: 2px; }
+  .flag-copy .fw { font-size: 11.5px; color: var(--ink-3); line-height: 1.45; }
+  .real-tag { font-size: 11px; color: var(--good); font-weight: 700; margin-top: 14px; }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .card, .how, .example { animation: rise .5s cubic-bezier(.16,1,.3,1) both; }
+  }
+</style>
+</head>
+<body>
+<!-- page -->
+<div class="labsbar">
+  <a class="home" href="https://everyday-labs.org/">Everyday Labs</a>
+  <nav><a href="https://everyday-labs.org/bulkmate/privacy/">Privacy</a><a href="https://everyday-labs.org/bulkmate/support/">Support</a><a href="https://everyday-labs.org/bulkmate/feedback/">Feedback</a></nav>
+</div>
+
+<div class="series">
+  <a href="/bulkmate/">1. Overview</a>
+  <a href="/bulkmate/receipts/">2. Receipts</a>
+  <span class="current">3. Scanner</span>
+  <a href="/bulkmate/rewards/">4. Rewards</a>
+  <a href="/bulkmate/spending/">5. Spending</a>
+</div>
+
+<div class="wrap">
+  <div class="hero">
+    <div class="badge-icon">📦</div>
+    <h1 class="display">Scan before you buy</h1>
+    <p class="lede">
+      Point the camera at any product's barcode to see its price, how the price has moved for
+      other shoppers, and a plain-language look at what's in it.
+    </p>
+  </div>
+
+  <div class="three">
+    <div class="card"><div class="icon">💵</div><h3>Current pricing</h3><p>Warehouse price, online price, and any instant savings, pulled live so it matches the shelf.</p></div>
+    <div class="card"><div class="icon">📈</div><h3>In-warehouse price history</h3><p>The lowest, highest, and average price other Bulkmate users recently paid for the item.</p></div>
+    <div class="card"><div class="icon">🥫</div><h3>Ingredient check</h3><p>The NOVA processing group and Nutri-Score, plus every ingredient sorted into clean, watch, or avoid, with a reason for anything flagged.</p></div>
+  </div>
+
+  <div class="how">
+    <span class="eyebrow">How the ingredient check works</span>
+    <h2 class="display">What's behind each rating</h2>
+    <p>It isn't a certified nutrition rating or medical advice. It's built on structured food data, in this order:</p>
+    <div class="source-row">
+      <span class="source-chip primary"><span class="rank">Primary</span>Open Food Facts</span>
+      <span class="source-chip fallback"><span class="rank">Fallback</span>USDA FoodData Central</span>
+    </div>
+    <div class="steps-mini">
+      <div><span class="n">1</span><span>The barcode is looked up in <b>Open Food Facts</b>, a free, open food database that returns the NOVA processing group (1–4), the Nutri-Score (A–E, the front-of-pack grade used in the EU), and the additive E-codes detected in the product. Only when it has no match does the app fall back to USDA FoodData Central's ingredient text and a simpler keyword check.</span></div>
+      <div><span class="n">2</span><span>Each detected additive is checked against a curated table of about 25 E-codes with documented regulatory action or research concern, such as nitrites, synthetic dyes, BHA/BHT and artificial sweeteners. Common additives like citric acid or lecithin stay unflagged. NOVA 4 ("ultra-processed"), a Nutri-Score of D or E, and high sugar, salt or fat are called out too.</span></div>
+    </div>
+    <div class="legend-row">
+      <div class="legend-pill good"><span class="dot"></span>Clean · no flag raised</div>
+      <div class="legend-pill watch"><span class="dot"></span>Watch · worth moderating</div>
+      <div class="legend-pill avoid"><span class="dot"></span>Avoid · flagged by research or regulators</div>
+    </div>
+    <div class="caveat">
+      <span class="mark">⚠️</span>
+      <p><b>"Clean" means no red flag was raised, not a certified endorsement.</b> NOVA and Nutri-Score come from real data, but which additives count as "watch" or "avoid" is a curated list, not a nutritionist's review, and it isn't tailored to any allergy or health condition. Treat it as a quick heads-up and check the label.</p>
+    </div>
+  </div>
+
+  <div class="example">
+    <span class="tag">Real scan output</span>
+    <h3>Kirkland Signature Dark Chocolate Toasted Coconut Cashews</h3>
+    <div class="sub">Costco Companies Inc.</div>
+    <div class="score-row">
+      <div class="nova-badge"><span class="num">NOVA 3</span><span class="lbl">Processed</span></div>
+      <div class="nutri-badge">B</div>
+    </div>
+    <div class="tally">
+      <span><span class="dot" style="background:var(--good)"></span>7 clean</span>
+      <span><span class="dot" style="background:var(--watch)"></span>4 watch</span>
+      <span><span class="dot" style="background:var(--avoid)"></span>0 avoid</span>
+    </div>
+    <p class="ing-text">
+      Cashews, coconut oil, <mark>sugar</mark>, <mark>dark chocolate (sugar, chocolate liqueur, cocoa butter…)</mark>,
+      <mark>toasted coconut (dried coconut, sugar, dextrose, salt)</mark>, sea salt, <mark>natural flavor</mark>.
+    </p>
+    <div class="flag-row"><span class="flag-chip">Watch</span><div class="flag-copy"><div class="fn">Sugar</div><div class="fw">Added sugar. Fine occasionally; worth tracking your daily total.</div></div></div>
+    <div class="flag-row"><span class="flag-chip">Watch</span><div class="flag-copy"><div class="fn">Natural Flavor</div><div class="fw">A broad legal term that can cover many compounds, not always disclosed.</div></div></div>
+    <div class="real-tag">✓ Output from a live scan against the production lookup, not a mockup</div>
+  </div>
+</div>
+
+<footer class="pagefoot">
+  Part 3 of 5 · Bulkmate by <a href="https://everyday-labs.org/">Everyday Labs</a> ·
+  <a href="https://everyday-labs.org/bulkmate/privacy/">Privacy</a> ·
+  <a href="https://everyday-labs.org/bulkmate/support/">Support</a> ·
+  <a href="https://everyday-labs.org/bulkmate/feedback/">Send feedback</a><br>
+  An independent app, not affiliated with or endorsed by Costco Wholesale.
+</footer>
+<!-- /page -->
+</body>
+</html>

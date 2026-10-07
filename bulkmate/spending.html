@@ -1,0 +1,136 @@
+---
+layout: null
+title: Bulkmate Spend Analytics
+permalink: /bulkmate/spending/
+---
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Bulkmate Spend Analytics</title>
+<meta name="description" content="Bulkmate builds a Costco spending dashboard from your scanned receipts: monthly trends, top items, and savings, with no manual entry.">
+<link rel="stylesheet" href="/assets/bulkmate.css">
+<style data-page>
+  :root { --accent: var(--success); --accent-tint: var(--success-tint); }
+  .hero .badge-icon { --hero-from: #2D8A6E; --hero-to: #1E6B52; }
+
+  .metrics { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin: 40px 0; }
+  @media (max-width: 620px) { .metrics { grid-template-columns: repeat(2, 1fr); } }
+  .metric { background: var(--surface); border-radius: 16px; padding: 16px; box-shadow: var(--shadow); border-top: 3px solid var(--m); }
+  .metric .ic { font-size: 18px; margin-bottom: 8px; }
+  .metric .v { font-size: 19px; font-weight: 800; letter-spacing: -0.01em; }
+  .metric .l { font-size: 10.5px; color: var(--ink-4); font-weight: 600; margin-top: 2px; letter-spacing: .04em; }
+
+  .chart-card { background: var(--surface); border-radius: 24px; padding: 28px; box-shadow: var(--shadow); margin: 0 0 20px; }
+  .chart-card h2 { font-size: 17px; margin: 0 0 4px; }
+  .chart-card .sub { font-size: 12.5px; color: var(--ink-4); margin-bottom: 22px; }
+  .bars { display: flex; align-items: flex-end; justify-content: space-between; height: 140px; gap: 8px; }
+  .bar-col { flex: 1; display: flex; flex-direction: column; align-items: center; height: 100%; justify-content: flex-end; min-width: 0; }
+  .bar-amt { font-size: 10px; color: var(--ink-4); margin-bottom: 4px; font-weight: 600; }
+  .bar-track { width: 100%; background: var(--sunken); border-radius: 6px; display: flex; align-items: flex-end; height: 100px; overflow: hidden; }
+  .bar-fill { width: 100%; background: var(--navy); opacity: .65; border-radius: 6px; }
+  .bar-col.active .bar-fill { background: var(--red); opacity: 1; }
+  .bar-lbl { font-size: 10px; color: var(--ink-4); margin-top: 6px; }
+  .bar-col.active .bar-lbl { color: var(--red); font-weight: 700; }
+  .tap-note { display: flex; align-items: center; gap: 8px; margin-top: 18px; font-size: 12px; color: var(--ink-4); }
+
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 0 0 44px; }
+  @media (max-width: 620px) { .two-col { grid-template-columns: 1fr; } }
+  .side-card { background: var(--surface); border-radius: 24px; padding: 26px; box-shadow: var(--shadow); min-width: 0; }
+  .side-card h2 { font-size: 16px; margin: 0 0 18px; }
+  .top-item { display: flex; align-items: center; gap: 12px; margin-bottom: 14px; }
+  .top-item .rank { width: 22px; font-weight: 800; font-size: 14px; color: var(--red); flex-shrink: 0; }
+  .top-item .info { flex: 1; min-width: 0; }
+  .top-item .name { font-size: 13px; font-weight: 700; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .top-item .track { height: 5px; background: var(--sunken); border-radius: 4px; margin-top: 5px; overflow: hidden; }
+  .top-item .fill { height: 100%; background: var(--red); border-radius: 4px; }
+  .top-item .amt { font-size: 12.5px; font-weight: 700; color: var(--ink-2); flex-shrink: 0; }
+  .split-bar { height: 14px; border-radius: 999px; overflow: hidden; display: flex; margin-bottom: 16px; }
+  .split-bar .a { background: var(--success); }
+  .split-bar .b { background: var(--gold); }
+  .split-legend { display: flex; flex-direction: column; gap: 10px; }
+  .split-legend .row { display: flex; align-items: center; gap: 10px; font-size: 12.5px; }
+  .split-legend .dot { width: 9px; height: 9px; border-radius: 50%; flex-shrink: 0; }
+  .split-legend .row b { margin-left: auto; }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .metric, .chart-card, .side-card { animation: rise .5s cubic-bezier(.16,1,.3,1) both; }
+  }
+</style>
+</head>
+<body>
+<!-- page -->
+<div class="labsbar">
+  <a class="home" href="https://everyday-labs.org/">Everyday Labs</a>
+  <nav><a href="https://everyday-labs.org/bulkmate/privacy/">Privacy</a><a href="https://everyday-labs.org/bulkmate/support/">Support</a><a href="https://everyday-labs.org/bulkmate/feedback/">Feedback</a></nav>
+</div>
+
+<div class="series">
+  <a href="/bulkmate/">1. Overview</a>
+  <a href="/bulkmate/receipts/">2. Receipts</a>
+  <a href="/bulkmate/scanner/">3. Scanner</a>
+  <a href="/bulkmate/rewards/">4. Rewards</a>
+  <span class="current">5. Spending</span>
+</div>
+
+<div class="wrap">
+  <div class="hero">
+    <div class="badge-icon">📊</div>
+    <h1 class="display">See where your money goes</h1>
+    <p class="lede">
+      Every scanned receipt builds a dashboard on its own, with no manual entry and no budgeting
+      app to maintain. It's a picture of your real Costco habits.
+    </p>
+  </div>
+
+  <div class="metrics">
+    <div class="metric" style="--m: var(--navy)"><div class="ic">💳</div><div class="v mono">$1,842</div><div class="l">TOTAL SPENT</div></div>
+    <div class="metric" style="--m: var(--success)"><div class="ic">🏷️</div><div class="v mono">$96</div><div class="l">IN-STORE SAVED</div></div>
+    <div class="metric" style="--m: var(--gold)"><div class="ic">🔔</div><div class="v mono">$41</div><div class="l">PRICE MATCH</div></div>
+    <div class="metric" style="--m: var(--red)"><div class="ic">🧾</div><div class="v mono">$153</div><div class="l">AVG BASKET</div></div>
+  </div>
+
+  <div class="chart-card">
+    <h2 class="display">Monthly spend</h2>
+    <div class="sub">Last 6 months · example data</div>
+    <div class="bars">
+      <div class="bar-col"><div class="bar-amt">$210</div><div class="bar-track"><div class="bar-fill" style="height:62%"></div></div><div class="bar-lbl">Mar</div></div>
+      <div class="bar-col"><div class="bar-amt">$95</div><div class="bar-track"><div class="bar-fill" style="height:28%"></div></div><div class="bar-lbl">Apr</div></div>
+      <div class="bar-col"><div class="bar-amt">$340</div><div class="bar-track"><div class="bar-fill" style="height:100%"></div></div><div class="bar-lbl">May</div></div>
+      <div class="bar-col"><div class="bar-amt">$180</div><div class="bar-track"><div class="bar-fill" style="height:53%"></div></div><div class="bar-lbl">Jun</div></div>
+      <div class="bar-col"><div class="bar-amt">$267</div><div class="bar-track"><div class="bar-fill" style="height:79%"></div></div><div class="bar-lbl">Jul</div></div>
+      <div class="bar-col active"><div class="bar-amt">$310</div><div class="bar-track"><div class="bar-fill" style="height:91%"></div></div><div class="bar-lbl">Aug</div></div>
+    </div>
+    <div class="tap-note">👆 <span>Tap any month to jump to just those receipts</span></div>
+  </div>
+
+  <div class="two-col">
+    <div class="side-card">
+      <h2>Top items by spend</h2>
+      <div class="top-item"><div class="rank">1</div><div class="info"><div class="name">Organic Almond Butter</div><div class="track"><div class="fill" style="width:100%"></div></div></div><div class="amt mono">$68</div></div>
+      <div class="top-item"><div class="rank">2</div><div class="info"><div class="name">Rotisserie Chicken</div><div class="track"><div class="fill" style="width:69%"></div></div></div><div class="amt mono">$47</div></div>
+      <div class="top-item"><div class="rank">3</div><div class="info"><div class="name">Paper Towels, 12-pk</div><div class="track"><div class="fill" style="width:54%"></div></div></div><div class="amt mono">$37</div></div>
+      <div class="top-item"><div class="rank">4</div><div class="info"><div class="name">Toilet Bowl Cleaner</div><div class="track"><div class="fill" style="width:38%"></div></div></div><div class="amt mono">$26</div></div>
+    </div>
+    <div class="side-card">
+      <h2>Savings breakdown</h2>
+      <div class="split-bar"><div class="a" style="width:70%"></div><div class="b" style="width:30%"></div></div>
+      <div class="split-legend">
+        <div class="row"><span class="dot" style="background:var(--success)"></span>In-store discounts <b class="mono">$96</b></div>
+        <div class="row"><span class="dot" style="background:var(--gold)"></span>Price match refunds <b class="mono">$41</b></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer class="pagefoot">
+  Part 5 of 5 · Bulkmate by <a href="https://everyday-labs.org/">Everyday Labs</a> ·
+  <a href="https://everyday-labs.org/bulkmate/privacy/">Privacy</a> ·
+  <a href="https://everyday-labs.org/bulkmate/support/">Support</a> ·
+  <a href="https://everyday-labs.org/bulkmate/feedback/">Send feedback</a><br>
+  An independent app, not affiliated with or endorsed by Costco Wholesale.
+</footer>
+<!-- /page -->
+</body>
+</html>

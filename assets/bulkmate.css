@@ -1,0 +1,99 @@
+/* Bulkmate product pages — shared by /bulkmate/* on everyday-labs.org.
+   Same "Warehouse Red & Cream" tokens as the app (costco-mobile/constants/colors.ts).
+   _tools/sync_artifacts.py inlines this file into the matching Claude artifacts. */
+
+/* Layout: one centered 780px column; pages stack cards with gap, never margins between siblings. */
+:root {
+  --red: #D1373A; --red-dark: #B42318; --red-tint: #F4D7D7;
+  --navy: #1B2A4A; --navy-tint: #E6EAF1;
+  --gold: #C9A84C; --gold-dark: #A98A3A; --gold-tint: #F7EED3;
+  --bg: #FDFAF3; --surface: #FFFFFF; --sunken: #F0E6D6;
+  --border: #E8E0D4;
+  --ink: #1A1714; --ink-2: #3D3935; --ink-3: #78726A; --ink-4: #A8A39A;
+  --success: #2D8A6E; --success-tint: #E3F3EE;
+  --good: #2D8A6E; --good-tint: #E3F3EE;
+  --watch: #B8842A; --watch-tint: #FAECD9;
+  --avoid: #B42318; --avoid-tint: #FBE4E1;
+  --nutriB: #85BB2F; --nutriB-ink: #1A1714;
+  --on-accent: #FFFFFF;
+  --shadow: 0 1px 2px rgba(26,23,20,.05), 0 8px 24px rgba(26,23,20,.06);
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --red: #FF6B6D; --red-dark: #B42318; --red-tint: #3D2020;
+    --navy: #F0EDE6; --navy-tint: #232A3D;
+    --gold: #E8C96E; --gold-dark: #C9A84C; --gold-tint: #3A3120;
+    --bg: #17140F; --surface: #221E18; --sunken: #2A241C;
+    --border: #3A342A;
+    --ink: #FAFAF8; --ink-2: #E8E5DF; --ink-3: #A8A39A; --ink-4: #78726A;
+    --success: #4FAE8E; --success-tint: #1E3A30;
+    --good: #4FAE8E; --good-tint: #1E3A30;
+    --watch: #E8A857; --watch-tint: #3D2E15;
+    --avoid: #E8635F; --avoid-tint: #3D1F1C;
+    --shadow: 0 1px 2px rgba(0,0,0,.4), 0 10px 28px rgba(0,0,0,.45);
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --red: #FF6B6D; --red-dark: #B42318; --red-tint: #3D2020;
+  --navy: #F0EDE6; --navy-tint: #232A3D;
+  --gold: #E8C96E; --gold-dark: #C9A84C; --gold-tint: #3A3120;
+  --bg: #17140F; --surface: #221E18; --sunken: #2A241C;
+  --border: #3A342A;
+  --ink: #FAFAF8; --ink-2: #E8E5DF; --ink-3: #A8A39A; --ink-4: #78726A;
+  --success: #4FAE8E; --success-tint: #1E3A30;
+  --good: #4FAE8E; --good-tint: #1E3A30;
+  --watch: #E8A857; --watch-tint: #3D2E15;
+  --avoid: #E8635F; --avoid-tint: #3D1F1C;
+  --shadow: 0 1px 2px rgba(0,0,0,.4), 0 10px 28px rgba(0,0,0,.45);
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+body {
+  background: var(--bg); color: var(--ink);
+  font-family: -apple-system, 'SF Pro Text', 'Segoe UI', Roboto, sans-serif;
+  -webkit-font-smoothing: antialiased; overflow-x: hidden;
+}
+a { color: inherit; }
+a:focus-visible, button:focus-visible { outline: 2px solid var(--red); outline-offset: 2px; border-radius: 6px; }
+.display { font-family: -apple-system, 'SF Pro Rounded', ui-rounded, 'Segoe UI', sans-serif; font-weight: 800; letter-spacing: -0.02em; }
+.mono { font-family: 'SF Mono', 'JetBrains Mono', Menlo, Consolas, monospace; font-variant-numeric: tabular-nums; }
+.wrap { max-width: 780px; margin: 0 auto; padding-inline: 24px; }
+
+/* Everyday Labs bar */
+.labsbar {
+  max-width: 780px; margin: 0 auto; padding: 18px 24px 0;
+  display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap;
+  font-size: 12.5px;
+}
+.labsbar a { text-decoration: none; color: var(--ink-3); font-weight: 600; }
+.labsbar a:hover { color: var(--ink); }
+.labsbar .home { color: var(--ink); font-weight: 800; letter-spacing: .02em; }
+.labsbar nav { display: flex; gap: 14px; }
+
+/* Series chips: the five Bulkmate pages */
+.series { display: flex; justify-content: center; gap: 8px; padding: 22px 16px 0; flex-wrap: wrap; }
+.series span, .series a {
+  font-size: 10.5px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase;
+  padding: 5px 10px; border-radius: 999px; color: var(--ink-4); background: var(--sunken);
+  text-decoration: none;
+}
+.series a:hover { background: var(--border); color: var(--ink-3); }
+.series span.current { color: var(--accent, var(--red)); background: var(--accent-tint, var(--red-tint)); }
+
+.hero { text-align: center; padding: 40px 0 8px; }
+.hero .badge-icon {
+  width: 84px; height: 84px; border-radius: 26px;
+  background: linear-gradient(155deg, var(--hero-from, var(--red)), var(--hero-to, var(--red-dark)));
+  display: flex; align-items: center; justify-content: center;
+  font-size: 40px; margin: 0 auto 22px; box-shadow: var(--shadow);
+}
+.hero h1 { font-size: clamp(28px, 5vw, 42px); margin: 0 0 14px; text-wrap: balance; }
+.hero p.lede { font-size: 17px; line-height: 1.65; color: var(--ink-2); max-width: 580px; margin: 0 auto; text-wrap: pretty; }
+
+footer.pagefoot { text-align: center; padding: 8px 16px 56px; font-size: 12.5px; color: var(--ink-4); line-height: 1.8; }
+footer.pagefoot a { color: var(--navy); font-weight: 600; }
+
+@keyframes rise { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
