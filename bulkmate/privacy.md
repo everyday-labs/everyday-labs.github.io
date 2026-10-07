@@ -7,7 +7,7 @@ permalink: /bulkmate/privacy/
 <!-- Source of truth: costco-mobile/docs/PRIVACY.md in the Bulkmate repo. Edit it there and
      copy it here, so the app repo and the website never disagree. -->
 
-**Last updated: 6 October 2026**
+**Last updated: 7 October 2026**
 
 Bulkmate is an independent app by **Everyday Labs** that helps you track Costco receipts, catch price-match
 windows, and earn rewards for warehouse visits. It is not affiliated with, endorsed by, or
